@@ -353,7 +353,7 @@ public class ContextLoader {
 	 */
 	protected Class<?> determineContextClass(ServletContext servletContext) {
 		/*
-		 * 获取web.xml中的<contextClass></contextClass>配置的将要使用的容器实例类型，如果没有自定义配置的话，
+		 * 获取web.xml中的<contextClass></contextClass> 配置的将要使用的容器实例类型，如果没有自定义配置的话，
 		 * 实现加载其默认WebApplicationContext实现类org.springframework.web.context.support.XmlWebApplicationContext。
 		 */
 		String contextClassName = servletContext.getInitParameter(CONTEXT_CLASS_PARAM);
