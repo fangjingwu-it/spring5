@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ypc.mysql.json.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ypc.mysql.json.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="sex" jdbcType="SMALLINT" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="address" property="address" javaType="com.ypc.mysql.json.model.Address" jdbcType="LONGVARCHAR" typeHandler="com.ypc.mysql.json.config.JSONHandler" />
+    <result column="family" property="family" javaType="com.ypc.mysql.json.model.Family" jdbcType="LONGVARCHAR" typeHandler="com.ypc.mysql.json.config.JSONHandler" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, username, mobile, sex, age, password,address,family
+  </sql>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <!-- insert new user -->
+  <insert id="insert" parameterType="com.ypc.mysql.json.model.User" useGeneratedKeys="true" keyProperty="id">
+    insert into t_user
+    (username, mobile, sex, age, password, address, family)
+    values(#{username,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+      #{sex,jdbcType=SMALLINT}, #{age,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR},
+ #{address,jdbcType=VARCHAR,javaType=com.ypc.mysql.json.model.Address,typeHandler=com.ypc.mysql.json.config.JSONHandler},
+      #{family,jdbcType=VARCHAR,javaType=com.ypc.mysql.json.model.Family,typeHandler=com.ypc.mysql.json.config.JSONHandler} )
+  </insert>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+</mapper>
