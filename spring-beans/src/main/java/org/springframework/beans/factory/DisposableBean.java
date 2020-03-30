@@ -33,6 +33,10 @@ package org.springframework.beans.factory;
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName()
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#destroySingletons()
  * @see org.springframework.context.ConfigurableApplicationContext#close()
+ * 扩展点之四DisposableBean：为实现了此接口的的bean提供了销毁该Bean之前想要的操作。默认会自动执行destroy方法，可以用于在Bean销毁时的回调处释放资源
+ *  可以定义一个类同时实现 这个接口 +InitializingBean来用于在初始化 和 销毁的操作
+ *
+ *  此方式没有销毁成功，可以了解一下 JVM级的 钩子函数AbstractApplicationContext.registerShutdownHook
  */
 public interface DisposableBean {
 
@@ -42,5 +46,4 @@ public interface DisposableBean {
 	 * but not rethrown to allow other beans to release their resources as well.
 	 */
 	void destroy() throws Exception;
-
 }

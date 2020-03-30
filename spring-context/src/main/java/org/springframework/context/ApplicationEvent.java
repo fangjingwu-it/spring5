@@ -24,6 +24,8 @@ import java.util.EventObject;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
+ *
+ * 扩展点10-2事件：ApplicationEvent-任何Bean可以通过实现该接口来定义一个事件类型。 该实现Bean为一个监听器
  */
 public abstract class ApplicationEvent extends EventObject {
 
@@ -37,6 +39,7 @@ public abstract class ApplicationEvent extends EventObject {
 	/**
 	 * Create a new ApplicationEvent.
 	 * @param source the object on which the event initially occurred (never {@code null})
+	 *               该类型事件 的事件源
 	 */
 	public ApplicationEvent(Object source) {
 		super(source);

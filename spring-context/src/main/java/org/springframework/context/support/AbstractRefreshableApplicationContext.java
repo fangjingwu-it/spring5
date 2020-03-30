@@ -62,7 +62,7 @@ import org.springframework.lang.Nullable;
  * @see FileSystemXmlApplicationContext
  * @see org.springframework.context.annotation.AnnotationConfigApplicationContext
  *
- * Spring扩展点之二：对于是否允许覆盖同名称的，不同定义的Bean对象（属性allowBeanDefinitionOverriding）和是否允许bean之间循环依赖（allowCircularReferences）
+ * 扩展点之二AbstractRefreshableApplicationContext：对于是否允许覆盖同名称的，不同定义的Bean对象（属性allowBeanDefinitionOverriding）和是否允许bean之间循环依赖（allowCircularReferences）
  * 的设置，只需要自定义一个类继承AbstractRefreshableApplicationContext类及其子类，然后对这两个属性值进行设置即可。
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {

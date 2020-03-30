@@ -55,6 +55,12 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.jndi.JndiObjectFactoryBean
+ * 扩展点之八：FactoryBean-用户可以通过实现该接口定制实例化Bean的逻辑（它的存在是为了生产其他的JavaBean）：
+ *
+ * 使用场景：
+ *   1. 通常是用来创建比较复杂的bean，一般的bean 直接用xml配置即可，但如果一个bean的创建过程中涉及到很多其他的bean 和复杂的逻辑，用xml配置比较困难，这时可以考虑用FactoryBean
+ *   2. 最明显的用途是创建实物代理 和 从JDNI上下文中自动获取资源
+ *
  */
 public interface FactoryBean<T> {
 

@@ -27,6 +27,10 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @since 1.0.1
  * @see java.lang.String#getBytes
+ *
+ * Spring内置的PropertyEditor（ByteArrayPropertyEditor），將各种属性得到String表示 转换 成正确的类型：將字符串值 转换为 相应的字节表示形式
+ *
+ * 扩展点之九PropertyEditorSupport（JDK带的）：如果想自定义一个属性编辑器，通过继承JDK自带的PropertyEditorSupport类
  */
 public class ByteArrayPropertyEditor extends PropertyEditorSupport {
 

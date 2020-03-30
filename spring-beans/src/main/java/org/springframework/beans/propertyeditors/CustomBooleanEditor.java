@@ -35,6 +35,8 @@ import org.springframework.util.StringUtils;
  * @author Juergen Hoeller
  * @since 10.06.2003
  * @see org.springframework.validation.DataBinder#registerCustomEditor
+ *
+ * Spring内置的PropertyEditor（ByteArrayPropertyEditor），將字符串 转成 Java Bolean类型
  */
 public class CustomBooleanEditor extends PropertyEditorSupport {
 

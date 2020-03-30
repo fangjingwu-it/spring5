@@ -52,6 +52,8 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.core.io.ResourceLoader
  * @see URLEditor
  * @see InputStreamEditor
+ *
+ * Spring内置的PropertyEditor（FileEditor），將String表示的文件路径 转换 成File对象。Spring不检查文件是否存在
  */
 public class FileEditor extends PropertyEditorSupport {
 

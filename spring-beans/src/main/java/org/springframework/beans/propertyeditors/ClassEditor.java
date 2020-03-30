@@ -35,6 +35,8 @@ import org.springframework.util.StringUtils;
  * @since 13.05.2003
  * @see Class#forName
  * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
+ *
+ * Spring内置的PropertyEditor（ByteArrayPropertyEditor），將类的字符串 转换成 实际的类
  */
 public class ClassEditor extends PropertyEditorSupport {
 

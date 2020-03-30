@@ -38,6 +38,8 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @see java.util.Properties#load
+ *
+ * Spring内置的PropertyEditor（ByteArrayPropertyEditor），將格式为 k1=v1 k2=v2 ... 格式的字符串 转换成 配置了相应属性的java.util.Properties实例
  */
 public class PropertiesEditor extends PropertyEditorSupport {
 

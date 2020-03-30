@@ -32,6 +32,10 @@ package org.springframework.beans.factory;
  * @see BeanClassLoaderAware
  * @see BeanFactoryAware
  * @see InitializingBean
+ *
+ * 扩展点之五BeanNameAware：如果某个bean需要访问配置文件中本身bean的id属性，这个Bean类通过实现该接口（在依赖关系确定之后，且在调用任何生命周期回调之前）
+ *    提供回调自身的能力，从而获得本身bean的id属性，该接口提供了void setBeanName(String name)方法实现，
+ * 使用场景：其实现大多仅仅是一行代码，即将容器获取的值，set到我们声明的类中的一个字段上。供以后使用：当需要提高日志的的质量时可以使用它
  */
 public interface BeanNameAware extends Aware {
 
@@ -46,6 +50,8 @@ public interface BeanNameAware extends Aware {
 	 * names, the actual bean name might have been made unique through appending
 	 * "#..." suffixes. Use the {@link BeanFactoryUtils#originalBeanName(String)}
 	 * method to extract the original bean name (without suffix), if desired.
+	 *
+	 * name参数就是该bean的id属性，加调该setBeanName方法可以让bean获取得自身的id属性
 	 */
 	void setBeanName(String name);
 

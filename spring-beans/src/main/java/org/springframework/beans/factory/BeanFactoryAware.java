@@ -37,6 +37,9 @@ import org.springframework.beans.BeansException;
  * @see BeanClassLoaderAware
  * @see InitializingBean
  * @see org.springframework.context.ApplicationContextAware
+ *
+ * 扩展点之六BeanFactoryAware：实现了BeanFactoryAware接口的bean，可以直接通过beanfactory来访问spring的容器，当该bean被容器创建以后，
+ *      会有一个相应的beanfactory的实例引用，就可以让Bean拥有访问Spring容器的能力。缺点：导致代码与spring的api耦合在一起，这种方式不推荐。
  */
 public interface BeanFactoryAware extends Aware {
 
@@ -49,6 +52,8 @@ public interface BeanFactoryAware extends Aware {
 	 * The bean can immediately call methods on the factory.
 	 * @throws BeansException in case of initialization errors
 	 * @see BeanInitializationException
+	 *
+	 * 该方法 通过这个方法的参数创建它的BeanFactory实例
 	 */
 	void setBeanFactory(BeanFactory beanFactory) throws BeansException;
 

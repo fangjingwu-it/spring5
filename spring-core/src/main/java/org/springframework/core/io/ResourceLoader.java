@@ -38,6 +38,9 @@ import org.springframework.util.ResourceUtils;
  * @see org.springframework.core.io.support.ResourcePatternResolver
  * @see org.springframework.context.ApplicationContext
  * @see org.springframework.context.ResourceLoaderAware
+ *
+ * 一个资源加载的标识接口，聚合了Resource接口。在进行资源加载的时候，通常会使用其实现类ApplicationContext
+ * 进行交互
  */
 public interface ResourceLoader {
 
@@ -63,6 +66,16 @@ public interface ResourceLoader {
 	 * @see #CLASSPATH_URL_PREFIX
 	 * @see Resource#exists()
 	 * @see Resource#getInputStream()
+	 *
+	 * 参数实例：
+	 * 1.
+	 *    ("file://" + File.getPath()) - 加载文件类型的资源；如下：
+	 *    File file = File.createTempFile("test","txt");
+	 *    FileSystemResource fileType = ApplicationContext.getResource("file://" + File.getPath());
+	 *
+	 * 2. ("classpath:test.txt") - 类路径下的资源（）；
+	 *    Resource fileType = ApplicationContext.getResource("classpath:test.txt");
+	 * 3. ("http://www.baidu.com") - 加载网络上的资源
 	 */
 	Resource getResource(String location);
 

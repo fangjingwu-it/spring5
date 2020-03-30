@@ -29,6 +29,10 @@ package org.springframework.context;
  * @see org.springframework.context.ApplicationEvent
  * @see org.springframework.context.event.ApplicationEventMulticaster
  * @see org.springframework.context.event.EventPublicationInterceptor
+ *
+ * 扩展点10-3发布事件：ApplicationEventPublisher-任何Bean可以通过实现该接口来定义一个发布事件类型 --- 但是通常做法是通过实现
+ *     ApplicationContextAware接口来获取Spring容器（ApplicationContext是ApplicationEventPublisher的子类），
+ *     进而通过Spring容器-ApplicationContext將我们定义的事件类型发布出去
  */
 @FunctionalInterface
 public interface ApplicationEventPublisher {

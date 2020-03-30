@@ -16,20 +16,6 @@
 
 package org.springframework.web.context.support;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.core.env.MutablePropertySources;
@@ -39,13 +25,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.RequestScope;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.context.request.SessionScope;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.context.request.*;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Convenience methods for retrieving the root {@link WebApplicationContext} for
@@ -402,26 +393,26 @@ public abstract class WebApplicationContextUtils {
 	private static class FacesDependencyRegistrar {
 
 		public static void registerFacesDependencies(ConfigurableListableBeanFactory beanFactory) {
-			beanFactory.registerResolvableDependency(FacesContext.class, new ObjectFactory<FacesContext>() {
-				@Override
-				public FacesContext getObject() {
-					return FacesContext.getCurrentInstance();
-				}
-				@Override
-				public String toString() {
-					return "Current JSF FacesContext";
-				}
-			});
-			beanFactory.registerResolvableDependency(ExternalContext.class, new ObjectFactory<ExternalContext>() {
-				@Override
-				public ExternalContext getObject() {
-					return FacesContext.getCurrentInstance().getExternalContext();
-				}
-				@Override
-				public String toString() {
-					return "Current JSF ExternalContext";
-				}
-			});
+//			beanFactory.registerResolvableDependency(FacesContext.class, new ObjectFactory<FacesContext>() {
+//				@Override
+//				public FacesContext getObject() {
+//					return FacesContext.getCurrentInstance();
+//				}
+//				@Override
+//				public String toString() {
+//					return "Current JSF FacesContext";
+//				}
+//			});
+//			beanFactory.registerResolvableDependency(ExternalContext.class, new ObjectFactory<ExternalContext>() {
+//				@Override
+//				public ExternalContext getObject() {
+//					return FacesContext.getCurrentInstance().getExternalContext();
+//				}
+//				@Override
+//				public String toString() {
+//					return "Current JSF ExternalContext";
+//				}
+//			});
 		}
 	}
 

@@ -55,6 +55,8 @@ import org.springframework.beans.factory.Aware;
  * @see MessageSourceAware
  * @see org.springframework.context.support.ApplicationObjectSupport
  * @see org.springframework.beans.factory.BeanFactoryAware
+ *
+ * 扩展点之七：ApplicationContextAware-在Bean类被初始化后，将会被注入applicationContext实例。
  */
 public interface ApplicationContextAware extends Aware {
 
@@ -70,6 +72,8 @@ public interface ApplicationContextAware extends Aware {
 	 * @throws ApplicationContextException in case of context initialization errors
 	 * @throws BeansException if thrown by application context methods
 	 * @see org.springframework.beans.factory.BeanInitializationException
+	 *
+	 * 该方法使用其参数context用来创建它的applicationContext实例，缺点：导致代码与spring的api耦合在一起，这种方式不推荐
 	 */
 	void setApplicationContext(ApplicationContext applicationContext) throws BeansException;
 

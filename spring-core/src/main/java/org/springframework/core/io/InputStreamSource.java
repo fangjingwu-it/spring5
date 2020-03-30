@@ -37,6 +37,8 @@ import java.io.InputStream;
  * @see Resource
  * @see InputStreamResource
  * @see ByteArrayResource
+ *
+ * 一个标识接口，聚合了InputStream组件
  */
 public interface InputStreamSource {
 

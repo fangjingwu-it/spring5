@@ -32,12 +32,15 @@ import java.util.EventListener;
  * @author Juergen Hoeller
  * @param <E> the specific ApplicationEvent subclass to listen to
  * @see org.springframework.context.event.ApplicationEventMulticaster
+ *
+ * 扩展点10-1监听：ApplicationListener-任何Bean可以通过实现该接口来监听 我们指定的事件类型。当配置完成后，ApplicationContext会自动注册
+ *     该实现Bean为一个监听器
  */
 @FunctionalInterface
 public interface ApplicationListener<E extends ApplicationEvent> extends EventListener {
 
 	/**
-	 * Handle an application event.
+	 * Handle an application event：当触发指定类型的事件时，由Spring自动调用该方法，进行业务逻辑的处理
 	 * @param event the event to respond to
 	 */
 	void onApplicationEvent(E event);
