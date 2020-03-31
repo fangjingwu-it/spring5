@@ -68,6 +68,7 @@ package org.springframework.core.env;
  * @see org.springframework.context.ConfigurableApplicationContext#setEnvironment
  * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
  *
+ * 用于封装正在运行的Spring应用环境，还有一些其他关键的属性信息，这些属性用于存储应用程序的底层配置：如应用程序文件夹配置，数据库链接信息等。
  * Spring对环境的抽象采用了不同的实现类：
  * 针对Spring非Web应用=>StandardEnvironment；针对Spring Servlet Web 应用=>StandardServletEnvironment
  *
