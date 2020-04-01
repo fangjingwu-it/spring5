@@ -307,7 +307,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 				cleanupTransactionInfo(txInfo);
 			}
 
-			// 事务未发生异常
+			// 事务未发生异常，执行提交操作
 			commitTransactionAfterReturning(txInfo);
 			return retVal;
 		}

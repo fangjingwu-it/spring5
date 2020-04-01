@@ -58,7 +58,7 @@ public interface Resource extends InputStreamSource {
 	 * descriptor handle.
 	 */
 	boolean exists();
-
+	BeanPostProcessor
 	/**
 	 * Indicate whether non-empty contents of this resource can be read via
 	 * {@link #getInputStream()}.

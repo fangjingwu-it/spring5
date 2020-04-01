@@ -39,6 +39,10 @@ import org.springframework.lang.Nullable;
  * @see DestructionAwareBeanPostProcessor
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
+ *
+ * 扩展点之11：BeanPostProcessor-其实现类称为后处理器（如果想对Bean在实例化之前也进行相关操作也可以可以实现接口
+ *     InstantiationAwareBeanPostProcessor，InstantiationAwareBeanPostProcessorAdapter来扩展），
+ *     对容器中所有的Bean起作用
  */
 public interface BeanPostProcessor {
 

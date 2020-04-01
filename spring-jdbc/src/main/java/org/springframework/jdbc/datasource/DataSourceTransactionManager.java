@@ -108,6 +108,8 @@ import org.springframework.util.Assert;
  * @see TransactionAwareDataSourceProxy
  * @see LazyConnectionDataSourceProxy
  * @see org.springframework.jdbc.core.JdbcTemplate
+ *
+ * 针对数据源的事务管理器
  */
 @SuppressWarnings("serial")
 public class DataSourceTransactionManager extends AbstractPlatformTransactionManager
@@ -235,6 +237,8 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 
 	@Override
 	protected Object doGetTransaction() {
+
+		// 根据DataSource数据源，获取DataSourceTransactionObject对象
 		DataSourceTransactionObject txObject = new DataSourceTransactionObject();
 		txObject.setSavepointAllowed(isNestedTransactionAllowed());
 		ConnectionHolder conHolder =
@@ -250,7 +254,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	}
 
 	/**
-	 * This implementation sets the isolation level but ignores the timeout.
+	 * 重新开启事务，设置事务隔离级别
 	 */
 	@Override
 	protected void doBegin(Object transaction, TransactionDefinition definition) {
@@ -281,6 +285,8 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 				if (logger.isDebugEnabled()) {
 					logger.debug("Switching JDBC Connection [" + con + "] to manual commit");
 				}
+
+				// 开启事务，设置不自动提交
 				con.setAutoCommit(false);
 			}
 
@@ -292,7 +298,12 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 				txObject.getConnectionHolder().setTimeoutInSeconds(timeout);
 			}
 
-			// Bind the connection holder to the thread.
+			/*
+			 * Bind the connection holder to the thread.
+			 * 把当前的connection对象放入TransactionSynchronizationManager持有，最终就是把connection对象
+			 * 存入ThreadLocal中
+			 */
+
 			if (txObject.isNewConnectionHolder()) {
 				TransactionSynchronizationManager.bindResource(obtainDataSource(), txObject.getConnectionHolder());
 			}

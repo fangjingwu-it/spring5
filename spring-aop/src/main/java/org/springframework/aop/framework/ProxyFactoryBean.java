@@ -124,10 +124,10 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	@Nullable
 	private transient BeanFactory beanFactory;
 
-	/** Whether the advisor chain has already been initialized. */
+	/** 标识通知器链是否已经完成初始化 */
 	private boolean advisorChainInitialized = false;
 
-	/** If this is a singleton, the cached singleton proxy instance. */
+	/** 单例模式的代理对象*/
 	@Nullable
 	private Object singletonInstance;
 
@@ -245,11 +245,16 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	 * The instance will be cached for a singleton, and create on each call to
 	 * {@code getObject()} for a proxy.
 	 * @return a fresh AOP proxy reflecting the current state of this factory
+	 *
+	 * 生成代理对象的入口
 	 */
 	@Override
 	@Nullable
 	public Object getObject() throws BeansException {
+		// 初始化通知器链
 		initializeAdvisorChain();
+
+		// 如果是单例返回单例模式的代理对象
 		if (isSingleton()) {
 			return getSingletonInstance();
 		}
@@ -258,6 +263,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 				logger.info("Using non-singleton proxies with singleton targets is often undesirable. " +
 						"Enable prototype proxies by setting the 'targetName' property.");
 			}
+			// 不是单例，返回一个新的代理对象
 			return newPrototypeInstance();
 		}
 	}
@@ -429,12 +435,15 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	 * from a BeanFactory will be refreshed each time a new prototype instance
 	 * is added. Interceptors added programmatically through the factory API
 	 * are unaffected by such changes.
+	 *
+	 * 初始化通知器链（或者叫拦截器链）
 	 */
 	private synchronized void initializeAdvisorChain() throws AopConfigException, BeansException {
 		if (this.advisorChainInitialized) {
 			return;
 		}
 
+		// 判断在ProxyFactoryBean中配置的通知器（拦截器）名称是否为空
 		if (!ObjectUtils.isEmpty(this.interceptorNames)) {
 			if (this.beanFactory == null) {
 				throw new IllegalStateException("No BeanFactory available anymore (probably due to serialization) " +
@@ -447,24 +456,27 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 				throw new AopConfigException("Target required after globals");
 			}
 
-			// Materialize interceptor chain from bean names.
+			// 遍历通知器链，向容器添加通知器
 			for (String name : this.interceptorNames) {
 				if (logger.isTraceEnabled()) {
 					logger.trace("Configuring advisor or advice '" + name + "'");
 				}
 
+				// 如果通知器是全局的
 				if (name.endsWith(GLOBAL_SUFFIX)) {
 					if (!(this.beanFactory instanceof ListableBeanFactory)) {
 						throw new AopConfigException(
 								"Can only use global advisors or interceptors with a ListableBeanFactory");
 					}
+
+					// 向容器中添加全局通知器
 					addGlobalAdvisor((ListableBeanFactory) this.beanFactory,
 							name.substring(0, name.length() - GLOBAL_SUFFIX.length()));
 				}
-
+				// 如果通知器不是全局的
 				else {
 					// If we get here, we need to add a named interceptor.
-					// We must check if it's a singleton or prototype.
+					// We must check if it's aPlatformTransactionManager singleton or prototype.
 					Object advice;
 					if (this.singleton || this.beanFactory.isSingleton(name)) {
 						// Add the real Advisor/Advice to the chain.
