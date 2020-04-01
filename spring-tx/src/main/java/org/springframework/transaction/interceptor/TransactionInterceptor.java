@@ -47,6 +47,8 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @see TransactionProxyFactoryBean
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.aop.framework.ProxyFactory
+ *
+ * 事务拦截器接口
  */
 @SuppressWarnings("serial")
 public class TransactionInterceptor extends TransactionAspectSupport implements MethodInterceptor, Serializable {
@@ -95,6 +97,7 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 		Class<?> targetClass = (invocation.getThis() != null ? AopUtils.getTargetClass(invocation.getThis()) : null);
 
 		// Adapt to TransactionAspectSupport's invokeWithinTransaction...
+		// 会去调用其父类TransactionAspectSupport中的方法invokeWithinTransaction
 		return invokeWithinTransaction(invocation.getMethod(), targetClass, invocation::proceed);
 	}
 

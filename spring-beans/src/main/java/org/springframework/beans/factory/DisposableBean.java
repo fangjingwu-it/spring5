@@ -37,6 +37,8 @@ package org.springframework.beans.factory;
  *  可以定义一个类同时实现 这个接口 +InitializingBean来用于在初始化 和 销毁的操作
  *
  *  此方式没有销毁成功，可以了解一下 JVM级的 钩子函数AbstractApplicationContext.registerShutdownHook
+ *
+ *  执行时机：指定某个方法在Bean销毁之前被执行（在destory-method之前执行）
  */
 public interface DisposableBean {
 

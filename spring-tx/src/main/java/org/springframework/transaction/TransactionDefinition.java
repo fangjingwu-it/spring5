@@ -42,6 +42,8 @@ import org.springframework.lang.Nullable;
  * @see PlatformTransactionManager#getTransaction(TransactionDefinition)
  * @see org.springframework.transaction.support.DefaultTransactionDefinition
  * @see org.springframework.transaction.interceptor.TransactionAttribute
+ *
+ *  该接口定义事务的一些基础信息：传播属性、如超时时间、隔离级别等
  */
 public interface TransactionDefinition {
 

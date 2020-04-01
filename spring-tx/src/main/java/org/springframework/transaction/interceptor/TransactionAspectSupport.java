@@ -286,22 +286,28 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 		if (txAttr == null || !(tm instanceof CallbackPreferringPlatformTransactionManager)) {
 			// Standard transaction demarcation with getTransaction and commit/rollback calls.
+
+			// 判断是否要开启事务 --- 重点方法
 			TransactionInfo txInfo = createTransactionIfNecessary(tm, txAttr, joinpointIdentification);
 
 			Object retVal;
 			try {
 				// This is an around advice: Invoke the next interceptor in the chain.
 				// This will normally result in a target object being invoked.
+				// 执行回调，如果没有后续拦截器，就进入事务方法了
 				retVal = invocation.proceedWithInvocation();
 			}
 			catch (Throwable ex) {
 				// target invocation exception
+				// 事务发生异常
 				completeTransactionAfterThrowing(txInfo, ex);
 				throw ex;
 			}
 			finally {
 				cleanupTransactionInfo(txInfo);
 			}
+
+			// 事务未发生异常
 			commitTransactionAfterReturning(txInfo);
 			return retVal;
 		}
@@ -454,6 +460,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * The {@code hasTransaction()} method on TransactionInfo can be used to
 	 * tell if there was a transaction created.
 	 * @see #getTransactionAttributeSource()
+	 *
+	 * 根据不同的事务传播属性，做出不同的处理，其核心是通过TransactionStatus来判断事务属性
 	 */
 	@SuppressWarnings("serial")
 	protected TransactionInfo createTransactionIfNecessary(@Nullable PlatformTransactionManager tm,
@@ -472,6 +480,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		TransactionStatus status = null;
 		if (txAttr != null) {
 			if (tm != null) {
+
+				//
 				status = tm.getTransaction(txAttr);
 			}
 			else {
