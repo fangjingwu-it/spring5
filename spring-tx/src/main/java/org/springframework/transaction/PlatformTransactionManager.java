@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.transaction.support.TransactionTemplate
  * @see org.springframework.transaction.interceptor.TransactionInterceptor
  *
- *  事务管理器接口
+ *  事务管理器抽象(接口)使用TransactionDefinition 和 TransactionStatus来创建 和 管理事务。
  */
 public interface PlatformTransactionManager {
 

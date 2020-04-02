@@ -37,6 +37,7 @@ import java.io.Flushable;
  * @see org.springframework.transaction.interceptor.TransactionInterceptor#currentTransactionStatus()
  *
  *  事务的一些状态信息接口：如是否一个新的事务、是否已被标记为回滚
+ *  PlatformTransactionManager - 事务管理器，通过此接口来 控制事务的执行动作
  */
 public interface TransactionStatus extends SavepointManager, Flushable {
 

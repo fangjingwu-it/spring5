@@ -43,7 +43,9 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.transaction.support.DefaultTransactionDefinition
  * @see org.springframework.transaction.interceptor.TransactionAttribute
  *
- *  该接口定义事务的一些基础信息：传播属性、如超时时间、隔离级别等
+ *  该接口定义事务的属性：传播属性、如超时时间、隔离级别等
+ *
+ *  PlatformTransactionManager - 事务管理器通过此接口 来定义事务
  */
 public interface TransactionDefinition {
 
@@ -221,6 +223,8 @@ public interface TransactionDefinition {
 	 * @return the isolation level
 	 * @see #ISOLATION_DEFAULT
 	 * @see org.springframework.transaction.support.AbstractPlatformTransactionManager#setValidateExistingTransaction
+	 *
+	 * 该方法控制这其他事务 能够看到当前事务所做的那些（对数据的）更改
 	 */
 	int getIsolationLevel();
 

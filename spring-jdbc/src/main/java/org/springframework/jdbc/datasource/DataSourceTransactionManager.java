@@ -109,7 +109,7 @@ import org.springframework.util.Assert;
  * @see LazyConnectionDataSourceProxy
  * @see org.springframework.jdbc.core.JdbcTemplate
  *
- * 针对数据源的事务管理器
+ * 针对数据库的数据源的事务管理器
  */
 @SuppressWarnings("serial")
 public class DataSourceTransactionManager extends AbstractPlatformTransactionManager
