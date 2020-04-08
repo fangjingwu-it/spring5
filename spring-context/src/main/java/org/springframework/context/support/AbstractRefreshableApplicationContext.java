@@ -143,7 +143,11 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
 
-			// 设置BeanFactory的两个配置属性：是否允许相同name或id的Bean进行覆盖覆盖、是否允许bean的循环引用
+			/*
+			 * 这里开始了对BeanFactory的扩展，在基本容器上，增加了是否允许相同name或id的Bean进行覆盖覆盖、是否允许bean的循环引用
+			 *
+			 * 设置BeanFactory的两个配置属性：是否允许相同name或id的Bean进行覆盖覆盖、是否允许bean的循环引用
+			 */
 			customizeBeanFactory(beanFactory);
 
 			// 加载Bean到BeanFactory中,进入XmlWebApplicationContext
@@ -237,6 +241,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see DefaultListableBeanFactory#setAllowCircularReferences
 	 * @see DefaultListableBeanFactory#setAllowRawInjectionDespiteWrapping
 	 * @see DefaultListableBeanFactory#setAllowEagerClassLoading
+	 *
+	 * 该方法的两个设置点，Spring只给出了默认值，真正进行设置由子类进行复写，然后进行设置
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
 

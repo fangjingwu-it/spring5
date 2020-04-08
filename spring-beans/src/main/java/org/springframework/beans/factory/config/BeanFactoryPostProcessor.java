@@ -42,7 +42,8 @@ import org.springframework.beans.BeansException;
  * @see BeanPostProcessor
  * @see PropertyResourceConfigurer
  *
- * 扩展点之12：BeanFactoryPostProcessor-工厂级生命周期接口方法。Bean实例化之前被调用
+ * 扩展点之12：BeanFactoryPostProcessor-工厂级生命周期接口方法。任何其他的Bean实例化之前被调用，读取配置元数据，并可以修改他们
+ *
  */
 @FunctionalInterface
 public interface BeanFactoryPostProcessor {
