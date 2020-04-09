@@ -38,7 +38,7 @@ package org.springframework.context;
  * @see org.springframework.web.context.ContextLoader#CONTEXT_INITIALIZER_CLASSES_PARAM
  * @see org.springframework.web.servlet.FrameworkServlet#setContextInitializerClasses
  * @see org.springframework.web.servlet.FrameworkServlet#applyInitializers
- * 扩展点之一ApplicationContextInitializer：该接口是在spring容器刷新之前执行的一个执行操作，作用就是在ConfigurableApplicationContext类型(或者子类型)的
+ * 扩展点之一：ApplicationContextInitializer-该接口是在spring容器刷新之前执行的一个执行操作，作用就是在ConfigurableApplicationContext类型(或者子类型)的
  * ApplicationContext做refresh之前，允许我们对ConfiurableApplicationContext的实例做进一步的设置和处理。
  *
  * 该接口典型的应用场景是web应用中需要编程方式对应用上下文做一些个性化的初始化设置。例如，根据上下文环境注册属性源或激活概要文件。

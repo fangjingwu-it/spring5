@@ -30,7 +30,7 @@ package org.springframework.beans;
  * @see PropertyEditorRegistry
  * @see java.beans.PropertyEditor
  *
- * 扩展点之十三： PropertyEditorRegistrar-扩展（自定义）的属性编辑器，这是Spring自带的（也可以通过扩展JDK中的
+ * 扩展点之十五： PropertyEditorRegistrar-扩展（自定义）的属性编辑器，这是Spring自带的（也可以通过扩展JDK中的
  *     PropertyEditorSupport接口来实现）
  */
 public interface PropertyEditorRegistrar {

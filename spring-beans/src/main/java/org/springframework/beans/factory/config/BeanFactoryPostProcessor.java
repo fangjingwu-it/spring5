@@ -42,7 +42,9 @@ import org.springframework.beans.BeansException;
  * @see BeanPostProcessor
  * @see PropertyResourceConfigurer
  *
- * 扩展点之12：BeanFactoryPostProcessor-工厂级生命周期接口方法。任何其他的Bean实例化之前被调用，读取配置元数据，并可以修改他们
+ * 扩展点之十二：BeanFactoryPostProcessor（和BeanPostProcessor相似，可以对bean的定义，即配置元素进行处理）-工厂（容器）级生命周期接口方法。
+ *    任何其他的Bean实例化之前被调用，读取配置元数据，并可以修改他们
+ * 典型应用是：其子类实现PropertyPlaceholderConfigure这个bean，可以用来指定要引入的属性配置文件xxx.properties
  *
  */
 @FunctionalInterface
@@ -55,6 +57,8 @@ public interface BeanFactoryPostProcessor {
 	 * properties even to eager-initializing beans.
 	 * @param beanFactory the bean factory used by the application context
 	 * @throws org.springframework.beans.BeansException in case of errors
+	 *
+	 * 该方法会作用到 该容器中所有的bean实例
 	 */
 	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
 

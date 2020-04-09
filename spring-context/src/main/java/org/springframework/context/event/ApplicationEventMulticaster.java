@@ -78,9 +78,11 @@ public interface ApplicationEventMulticaster {
 	 * Multicast the given application event to appropriate listeners.
 	 * <p>If the {@code eventType} is {@code null}, a default type is built
 	 * based on the {@code event} instance.
-	 * @param event the event to multicast
-	 * @param eventType the type of event (can be null)
+	 * @param event 要进行广播的事件
+	 * @param eventType 要进行广播的事件类型
 	 * @since 4.2
+	 *
+	 * 将给定的应用程序事件广播到适当的监听器
 	 */
 	void multicastEvent(ApplicationEvent event, @Nullable ResolvableType eventType);
 

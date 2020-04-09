@@ -16,6 +16,7 @@
 
 package org.springframework.core.convert.converter;
 
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.lang.Nullable;
 
 /**
@@ -29,6 +30,21 @@ import org.springframework.lang.Nullable;
  * @since 3.0
  * @param <S> the source type
  * @param <T> the target type
+ *
+ * 扩展点之十七：Converter-类型转换器，要将这些转换器 添加到ConversionService中去，成为转换服务中转换链的一员
+ * 客户端使用实例
+ * <pre class="code">
+ *    package xxx.xxx.xxx;
+ *
+ *    public class ClientDemo {
+ *        public static void main(){
+ *           DefaultConversionService conversionService = new DefaultConversionService();
+ *           conversionService.addConverter(我们自定义的继承了Converter接口的转换器类);
+ *           String source = "要进行转换的字符串";
+ *           conversionService.convert(source,"要转成的类型的Class文件");
+ *        }
+ *    }
+ *  </pre>
  */
 @FunctionalInterface
 public interface Converter<S, T> {

@@ -30,7 +30,7 @@ package org.springframework.beans.factory;
  * @see DisposableBean
  * @see org.springframework.beans.factory.config.BeanDefinition#getPropertyValues()
  * @see org.springframework.beans.factory.support.AbstractBeanDefinition#getInitMethodName()
- * 扩展点之三InitializingBean：为实现了此接口的的bean提供了初始化该Bean时想要的操作。默认会自动执行afterPropertiesSet方法
+ * 扩展点之三：InitializingBean-为实现了此接口的的bean提供了初始化该Bean时想要的操作。默认会自动执行afterPropertiesSet方法
  *           可以在Bean初始化时创建 并 配置资源（在Bean销毁时的回调处释放资源）
  * 可以定义一个类同时实现 这个接口 + DisposableBean来用于在初始化 和 销毁的操作
  *

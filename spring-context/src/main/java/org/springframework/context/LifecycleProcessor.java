@@ -22,16 +22,23 @@ package org.springframework.context;
  * @author Mark Fisher
  * @author Juergen Hoeller
  * @since 3.0
+ *
+ * 扩展点之十八：LifecycleProcessor-负责管理ApplicationContext生命周期，需要他的地方实在太少了。
+ *     对他的扩展可以使用去实现DefaultLifecycleProcessor
  */
 public interface LifecycleProcessor extends Lifecycle {
 
 	/**
 	 * Notification of context refresh, e.g. for auto-starting components.
+	 *
+	 * 作用是容器启动成功
 	 */
 	void onRefresh();
 
 	/**
 	 * Notification of context close phase, e.g. for auto-stopping components.
+	 *
+	 * 是只应用要关闭的时候
 	 */
 	void onClose();
 

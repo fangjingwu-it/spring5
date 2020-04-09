@@ -37,7 +37,7 @@ package org.aopalliance.intercept;
  * }
  * </pre>
  *
- * 扩展点之12：MethodInterceptor - 实现此接口可以在调用之前和之后执行额外的处理。
+ * 扩展点之十六：MethodInterceptor - 实现此接口可以在调用之前和之后执行额外的处理。
  *
  * @author Rod Johnson
  */
