@@ -45,6 +45,8 @@ import org.springframework.util.ErrorHandler;
  * @author Juergen Hoeller
  * @author Stephane Nicoll
  * @see #setTaskExecutor
+ *
+ * spring boot中造spring.factories中配置的的监听器，都会传递到SimpleApplicationEventMulticaster中
  */
 public class SimpleApplicationEventMulticaster extends AbstractApplicationEventMulticaster {
 
@@ -129,20 +131,29 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 
 	/**
 	 * 将给定的应用程序事件广播到适当的监听器
-	 * @param event the event to multicast
+	 * @param event the event to multicast 通过入参不同的子类事件实现类型，会触发(multicastEvent)不同的监听器
 	 * @param eventType the type of event (can be null)
 	 */
 	@Override
 	public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableType eventType) {
 		ResolvableType type = (eventType != null ? eventType : resolveDefaultEventType(event));
+
+		// //获取线程池，如果为空则同步处理。这里线程池为空，还未没初始化
 		Executor executor = getTaskExecutor();
 
-		// 遍历所有监听器，并使用onApplicationContext()对监听的事件中的数据进行处理
+		/*
+		 * 遍历所有监听器，并使用onApplicationContext()对监听的事件中的数据进行处理
+		 *
+		 * 这里会根据事件类型ApplicationStartingEvent(这个是Spring Boot中的类型)获取对应的监听器，
+		 */
 		for (ApplicationListener<?> listener : getApplicationListeners(event, type)) {
 			if (executor != null) {
+
+				// 异步发送事件
 				executor.execute(() -> invokeListener(listener, event));
 			}
 			else {
+				// 同步发送事件
 				invokeListener(listener, event);
 			}
 		}

@@ -33,6 +33,9 @@ import org.springframework.lang.Nullable;
  * @since 4.2
  * @see SmartApplicationListener
  * @see GenericApplicationListenerAdapter
+ *
+ * 扩展点之十九：GenericApplicationListener用于重写匹配监听器事件的接口，就是说如果需要判断的监听器是GenericApplicationListener的子类，
+ *   说明类型匹配方法已被重现，就调用子类的匹配方法。如果不是，则为我们提供一个默认的适配器用来匹配：GenericApplicationListenerAdapter
  */
 public interface GenericApplicationListener extends ApplicationListener<ApplicationEvent>, Ordered {
 
